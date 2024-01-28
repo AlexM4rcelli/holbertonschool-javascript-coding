@@ -5,7 +5,6 @@ const url = process.argv[2];
 const filepath = process.argv[3];
 
 request.get(url, (err, res, body) => {
-
   if (err) {
     console.error(err);
   } else {
