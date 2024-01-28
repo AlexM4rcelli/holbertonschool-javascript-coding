@@ -9,7 +9,7 @@ request.get(url, (err, res) => {
   } else {
     try {
       const movies = JSON.parse(res.body).results;
-      let count = movies.reduce((acc, movie) => {
+      const count = movies.reduce((acc, movie) => {
         for (const character of movie.characters) {
           if (character.includes('18')) {
             acc++;
