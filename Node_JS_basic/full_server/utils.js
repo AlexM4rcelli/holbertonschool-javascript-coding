@@ -7,11 +7,10 @@ function readDatabase(path) {
         reject(error);
         return;
       }
-      const students = data.split('\n').slice(1, data.length - 1);
+      const students = data.split('\n').slice(1, -1);
       const subjects = {};
-      students.pop();
-      students.map(row => row.replace(/[\r\s]+/g, '')).forEach((student) => {
-        const studentData = student.split(',');
+      students.forEach((row) => {
+        const studentData = row.replace(/[\r\s]+/g, '').split(',');
         if (!subjects[studentData[3]]) subjects[studentData[3]] = [];
         subjects[studentData[3]].push(studentData[0]);
       });

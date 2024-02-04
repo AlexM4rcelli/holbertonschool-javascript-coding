@@ -24,7 +24,7 @@ class StudentsController {
         })
         .catch(() => {
           res.status(500).send('Cannot load the database');
-        })
+        });
     } else {
       res.status(500).send('Major parameter must be CS or SWE');
     }

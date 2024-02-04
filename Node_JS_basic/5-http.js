@@ -1,13 +1,15 @@
 // Importing the http module
 const http = require('http');
+
 const countStudents = require('./3-read_file_async');
+
 const dataBase = process.argv[2];
 
 const app = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
 
-  if (req.url === '/') res.end('Hello Holberton School!\n');
+  if (req.url === '/') res.end('Hello Holberton School!');
   else if (req.url === '/students') {
     res.write('This is the list of our students\n');
     countStudents(dataBase)
@@ -20,8 +22,6 @@ const app = http.createServer((req, res) => {
 });
 
 const port = 1245;
-app.listen(port, () => {
-  console.log(`Server is running and listening on port ${port}`);
-});
+app.listen(port, () => {});
 
 module.exports = app;

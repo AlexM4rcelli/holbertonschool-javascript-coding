@@ -12,12 +12,12 @@ app.get('/', (req, res) => {
 app.get('/students', (req, res) => {
   const msg = 'This is the list of our students\n';
   countStudents(dataBase)
-  .then((data) => {
-    res.send(`${msg}${data.join('\n')}`);
-  })
-  .catch((error) => {
-    res.send(`${msg}${error.message}`)
-  });
+    .then((data) => {
+      res.send(`${msg}${data.join('\n')}`);
+    })
+    .catch((error) => {
+      res.send(`${msg}${error.message}`);
+    });
 });
 
 const server = app.listen(port, () => {});

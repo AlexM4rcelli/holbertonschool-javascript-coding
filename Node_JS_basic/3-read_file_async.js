@@ -11,7 +11,7 @@ function countStudents(path) {
       const subjects = {};
       const messages = [];
       students.pop();
-      students.map(row => row.replace(/[\r\s]+/g, '')).forEach((student) => {
+      students.map((row) => row.replace(/[\r\s]+/g, '')).forEach((student) => {
         const studentData = student.split(',');
         if (!subjects[studentData[3]]) subjects[studentData[3]] = [];
         subjects[studentData[3]].push(studentData[0]);
@@ -22,10 +22,10 @@ function countStudents(path) {
           subjects[key].join(', ')
         }`);
       }
-      
+
       messages.forEach((message) => console.log(message));
       resolve(messages);
     });
   });
-};
+}
 module.exports = countStudents;
