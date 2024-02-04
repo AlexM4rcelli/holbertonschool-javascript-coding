@@ -2,7 +2,6 @@ const readDatabase = require('../utils.js');
 
 class StudentsController {
   static getAllStudents(req, res, dataPath) {
-    console.log(dataPath)
     readDatabase(dataPath)
       .then((data) => {
         let responseMessage = 'This is the list of our students\n';
@@ -18,7 +17,6 @@ class StudentsController {
 
   static getAllStudentsByMajor(req, res, dataPath) {
     const { major } = req.params;
-    console.log(major);
     if (major === 'CS' || major === 'SWE') {
       readDatabase(dataPath)
       .then((data) => {

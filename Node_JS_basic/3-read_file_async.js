@@ -1,10 +1,12 @@
 const fs = require('fs');
-const { resolve } = require('path');
 
 const countStudents = (path) => {
   return new Promise((resolve, reject) => {
     fs.readFile(path, 'utf8', (error, data) => {
-      if (error) reject(new Error('Cannot load the database'));
+      if (error) {
+        reject(new Error('Cannot load the database'));
+        return;
+      }
       const students = data.split('\n').slice(1, data.length - 1);
       const subjects = {};
       const messages = [];

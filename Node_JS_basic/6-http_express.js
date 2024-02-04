@@ -6,8 +6,6 @@ app.get('/', (req, res) => {
 });
 
 const port = 1245;
-app.listen(port, () => {
-  console.log(`Express server is running and listening on port ${port}`);
-});
+app.listen(port, () => {});
 
 module.exports = app;

@@ -6,20 +6,19 @@ const port = 1245;
 const dataBase = process.argv[2];
 
 app.get('/', (req, res) => {
-  res.type('text/plain').send('Hello Holberton School!\n');
+  res.send('Hello Holberton School!');
 });
 
-app.get('/students', async (req, res) => {
-  try {
-    const data = await countStudents(dataBase);
-    res.type('text/plain').send(`This is the list of our students\n${data.join('\n')}`);
-  } catch (error) {
-    res.type('text/plain').send(error.toString());
-  }
+app.get('/students', (req, res) => {
+  countStudents(dataBase)
+  .then((data) => {
+    res.send(`This is the list of our students\n${data.join('\n')}`);
+  })
+  .catch((error) => {
+    res.send(error.message)
+  });
 });
 
-const server = app.listen(port, () => {
-  console.log(`Express server is running and listening on port ${port}`);
-});
+const server = app.listen(port, () => {});
 
 module.exports = server;

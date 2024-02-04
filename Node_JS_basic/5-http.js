@@ -6,14 +6,14 @@ const dataBase = process.argv[2];
 const app = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
 
-  if (req.url === '/') res.end('Hello Holberton School!\n');
+  if (req.url === '/') res.status(200).end('Hello Holberton School!\n');
   else if (req.url === '/students') {
     res.write('This is the list of our students\n');
     countStudents(dataBase)
-      .then((data) => res.end(`${data.join('\n')}`))
-      .catch((error) => res.end(error));
+      .then((data) => res.status(200).end(`${data.join('\n')}`))
+      .catch((error) => res.end(error.message));
   } else {
-    res.end();
+    res.status(404).end();
   }
 });
 

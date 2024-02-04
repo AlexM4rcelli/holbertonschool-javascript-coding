@@ -3,7 +3,10 @@ const fs = require('fs');
 function readDatabase(path) {
   return new Promise((resolve, reject) => {
     fs.readFile(path, 'utf8', (error, data) => {
-      if (error) reject(error);
+      if (error) {
+        reject(error);
+        return;
+      }
       const students = data.split('\n').slice(1, data.length - 1);
       const subjects = {};
       students.pop();
