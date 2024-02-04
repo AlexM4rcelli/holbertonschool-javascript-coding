@@ -1,4 +1,4 @@
-const readDatabase = require('../utils.js');
+const readDatabase = require('../utils');
 
 class StudentsController {
   static getAllStudents(req, res, dataPath) {
@@ -12,19 +12,19 @@ class StudentsController {
       })
       .catch(() => {
         res.status(500).send('Cannot load the database');
-      })
+      });
   }
 
   static getAllStudentsByMajor(req, res, dataPath) {
     const { major } = req.params;
     if (major === 'CS' || major === 'SWE') {
       readDatabase(dataPath)
-      .then((data) => {
-        res.send(`List: ${data[major].join(', ')}`);
-      })
-      .catch(() => {
-        res.status(500).send('Cannot load the database');
-      })
+        .then((data) => {
+          res.send(`List: ${data[major].join(', ')}`);
+        })
+        .catch(() => {
+          res.status(500).send('Cannot load the database');
+        })
     } else {
       res.status(500).send('Major parameter must be CS or SWE');
     }
